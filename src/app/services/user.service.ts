@@ -7,13 +7,12 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private users: User[] = [
-    new User('Will', 'Alexander', 'will@will.com', 'jus d\'orange', ['coder', 'boire du café'])
-  ];
+  private users: User[] = []; 
   userSubject = new Subject<User[]>();
 
-  emitUsers() {
-    this.userSubject.next(this.users.slice());
+  emitUsers() { 
+    const usersBack = this.users ?  this.users.slice() : null
+    this.userSubject.next(usersBack);
   }
 
   addUser(user: User) {
